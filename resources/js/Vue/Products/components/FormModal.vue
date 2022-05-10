@@ -64,9 +64,10 @@
             async store(){
                 if(this.loading) return
                 this.loading = true
+                let url = `api/products/${this.form.id ?  this.form.id : ''}`
 
                 await axios
-                    .post('api/products', this.form)
+                    .post(url, this.form)
                     .then(res => {
                         if(res.data.saved){
                             Swal.fire(this.titleModal, 'Se guardo correctamente.', 'success')

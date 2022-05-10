@@ -17,11 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('users')->controller(\App\Http\Controllers\User\UserController::class)->group(function () {
     Route::get('/', 'getList');
     Route::post('/', 'store');
+    Route::post('/{user}', 'update');
     Route::delete('/{user}', 'destroy');
 });
 Route::prefix('products')->controller(\App\Http\Controllers\Product\ProductController::class)->group(function () {
     Route::get('/', 'getList');
     Route::post('/', 'store');
+    Route::post('/{product}', 'update');
     Route::delete('/{product}', 'destroy');
 });
 

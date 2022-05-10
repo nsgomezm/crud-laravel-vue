@@ -3,11 +3,11 @@
         <div class="card-header d-flex align-items-center flex-wrap">
             <b>Usuarios</b>
             <div class="ml-auto">
-                <button class="btn btn-outline-success" v-on:click="addUser()">Nuevo Usuario <i class="fa-solid fa-user-plus"></i></button>
+                <button class="btn btn-outline-success" v-on:click="showForm()">Nuevo Usuario <i class="fa-solid fa-user-plus"></i></button>
             </div>
         </div>
         <div class="card-body">
-            <user-table :data="users" v-on:delete="removedUser"/>
+            <user-table :data="users" v-on:edit="showForm" v-on:delete="removedUser"/>
         </div>
 
         <form-modal ref="modal" v-on:new="newRow"/>
@@ -47,10 +47,15 @@
                         this.load = true
                     })
             },
-            addUser(){
-                this.$refs.modal.showModal('Nuevo usuario')
+            showForm(user = null){
+                this.$refs.modal.showModal(`${user ? 'Actualizar' : 'Nuevo'} usuario`, user)
             },
             newRow(user){
+                let existsUser = this.users.indexOf(user)
+                if(existsUser){
+                    this.users[existsUser] = user
+                    return
+                }
                 this.users.push(user)
             },
             removedUser(user){

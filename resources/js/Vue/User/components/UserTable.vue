@@ -15,7 +15,7 @@
                     <td>{{ row.name }}</td>
                     <td>{{ row.email }}</td>
                     <td>
-                        <a href="#" v-on:click.prevent="edit(row)" class="btn btn-sm btn-primary mr-2"><i class="fa-solid fa-user-pen"></i></a>
+                        <a href="#" v-on:click.prevent="$emit('edit', row)" class="btn btn-sm btn-primary mr-2"><i class="fa-solid fa-user-pen"></i></a>
                         <a href="#" v-on:click.prevent="destroy(row)" class="btn btn-sm btn-danger"><i class="fa-solid fa-user-minus"></i></a>
                     </td>
                 </tr>
@@ -27,15 +27,7 @@
 <script>
     export default {
         props:['data'],
-        mounted(){
-            setTimeout(() => {
-
-            },1000)
-        },
         methods:{
-            edit(){
-
-            },
 
             destroy(user){
                 Swal.fire({

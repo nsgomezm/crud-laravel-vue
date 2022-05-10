@@ -3,12 +3,11 @@
         <div class="card-header d-flex align-items-center flex-wrap">
             <b>Productos</b>
             <div class="ml-auto">
-                <button class="btn btn-outline-success" v-on:click="addProduct()">Nuevo Producto <i class="fa-solid fa-cart-shopping    "></i></button>
-
+                <button class="btn btn-outline-success" v-on:click="showForm()">Nuevo Producto <i class="fa-solid fa-cart-shopping    "></i></button>
             </div>
         </div>
         <div class="card-body">
-            <user-table :data="products" v-on:delete="removedUser"/>
+            <user-table :data="products" v-on:edit="showForm" v-on:delete="removeProduct"/>
         </div>
 
         <form-modal ref="modal" v-on:new="newRow"/>
@@ -36,7 +35,7 @@
                 await axios
                     .get('/api/products')
                     .then(res => {
-                        this.products = res.data
+                        this.products = res.data.products
                     })
                     .catch(error => {
                         Swal.fire('Ops..!', 'Ocurrio un error', 'error')
@@ -48,13 +47,18 @@
                         this.load = true
                     })
             },
-            addProduct(){
-                this.$refs.modal.showModal('Nuevo producto')
+            showForm(product = null){
+                this.$refs.modal.showModal(`${product ? 'Actualizar' : 'Nuevo '} producto`, product)
             },
             newRow(product){
+                let existsProduct = this.products.indexOf(product)
+                if(existsProduct){
+                    this.products[existsProduct] = product
+                    return
+                }
                 this.products.push(product)
             },
-            removedUser(product){
+            removeProduct(product){
                 this.products.splice( this.products.indexOf(product), 1)
             }
         }

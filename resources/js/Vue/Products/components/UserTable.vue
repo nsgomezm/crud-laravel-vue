@@ -17,7 +17,7 @@
                     <td>{{ row.price }}</td>
                     <td>{{ row.descript }}</td>
                     <td>
-                        <a href="#" v-on:click.prevent="edit(row)" class="btn btn-sm btn-primary mr-2"><i class="fa-solid fa-user-pen"></i></a>
+                        <a href="#" v-on:click.prevent="$emit('edit', row)" class="btn btn-sm btn-primary mr-2"><i class="fa-solid fa-user-pen"></i></a>
                         <a href="#" v-on:click.prevent="destroy(row)" class="btn btn-sm btn-danger"><i class="fa-solid fa-user-minus"></i></a>
                     </td>
                 </tr>
@@ -30,10 +30,6 @@
     export default {
         props:['data'],
         methods:{
-            edit(){
-
-            },
-
             destroy(product){
                 Swal.fire({
                     text: `Seguro que deseas eliminar el registro de (${product.name})?`,

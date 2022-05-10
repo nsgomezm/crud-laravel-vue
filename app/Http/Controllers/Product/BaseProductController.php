@@ -16,7 +16,9 @@ class baseProductController extends Controller
      */
     public function getList()
     {
-        return Product::get();
+        return response()->json([
+            'products' => Product::get()
+        ]);
     }
 
     /**
@@ -52,9 +54,12 @@ class baseProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Product $product, Request $request)
     {
-        //
+        return response()->json([
+            'saved' => $product->update($request->all()),
+            'product' => $product
+        ]);
     }
 
     /**

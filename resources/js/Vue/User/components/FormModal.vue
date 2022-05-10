@@ -28,11 +28,11 @@
                             <input autocomplete="false" type="email" class="form-control" id="email" placeholder="Juanito Perez" v-model="form.email">
                             <label for="email">Correo electronico</label>
                         </div>
-                        <div class="form-floating mb-3">
+                        <div class="form-floating mb-3" v-if="!form.id">
                             <input autocomplete="false" type="password" class="form-control" id="password" placeholder="Juanito Perez" v-model="form.password">
                             <label for="password">Contraseña</label>
                         </div>
-                        <div class="form-floating mb-3">
+                        <div class="form-floating mb-3" v-if="!form.id">
                             <input autocomplete="false" type="password" class="form-control" id="password_confirm" placeholder="Juanito Perez" v-model="form.password_confirm">
                             <label for="password_confirm">Confirmar Contraseña</label>
                         </div>
@@ -68,9 +68,9 @@
             async store(){
                 if(this.loading) return
                 this.loading = true
-
+                let url = `api/users/${this.form.id ?  this.form.id : ''}`
                 await axios
-                    .post('api/users', this.form)
+                    .post(url, this.form)
                     .then(res => {
                         if(res.data.saved){
                             Swal.fire(this.titleModal, 'Se guardo correctamente.', 'success')

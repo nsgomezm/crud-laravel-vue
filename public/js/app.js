@@ -22997,7 +22997,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.next = 2;
                 return axios.get('/api/products').then(function (res) {
-                  _this.products = res.data;
+                  _this.products = res.data.products;
                 })["catch"](function (error) {
                   Swal.fire('Ops..!', 'Ocurrio un error', 'error');
                 })["finally"](function () {
@@ -23015,13 +23015,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    addProduct: function addProduct() {
-      this.$refs.modal.showModal('Nuevo producto');
+    showForm: function showForm() {
+      var product = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      this.$refs.modal.showModal("".concat(product ? 'Actualizar' : 'Nuevo ', " producto"), product);
     },
     newRow: function newRow(product) {
+      var existsProduct = this.products.indexOf(product);
+
+      if (existsProduct) {
+        this.products[existsProduct] = product;
+        return;
+      }
+
       this.products.push(product);
     },
-    removedUser: function removedUser(product) {
+    removeProduct: function removeProduct(product) {
       this.products.splice(this.products.indexOf(product), 1);
     }
   }
@@ -23068,6 +23076,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var url;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -23081,8 +23090,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 _this.loading = true;
-                _context.next = 5;
-                return axios.post('api/products', _this.form).then(function (res) {
+                url = "api/products/".concat(_this.form.id ? _this.form.id : '');
+                _context.next = 6;
+                return axios.post(url, _this.form).then(function (res) {
                   if (res.data.saved) {
                     Swal.fire(_this.titleModal, 'Se guardo correctamente.', 'success').then(function () {
                       return _this.closeModal();
@@ -23108,7 +23118,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.loading = false;
                 });
 
-              case 5:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -23164,7 +23174,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['data'],
   methods: {
-    edit: function edit() {},
     destroy: function destroy(product) {
       var _this = this;
 
@@ -23380,10 +23389,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    addUser: function addUser() {
-      this.$refs.modal.showModal('Nuevo usuario');
+    showForm: function showForm() {
+      var user = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      this.$refs.modal.showModal("".concat(user ? 'Actualizar' : 'Nuevo', " usuario"), user);
     },
     newRow: function newRow(user) {
+      var existsUser = this.users.indexOf(user);
+
+      if (existsUser) {
+        this.users[existsUser] = user;
+        return;
+      }
+
       this.users.push(user);
     },
     removedUser: function removedUser(user) {
@@ -23433,6 +23450,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var url;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -23446,8 +23464,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 _this.loading = true;
-                _context.next = 5;
-                return axios.post('api/users', _this.form).then(function (res) {
+                url = "api/users/".concat(_this.form.id ? _this.form.id : '');
+                _context.next = 6;
+                return axios.post(url, _this.form).then(function (res) {
                   if (res.data.saved) {
                     Swal.fire(_this.titleModal, 'Se guardo correctamente.', 'success').then(function () {
                       return _this.closeModal();
@@ -23473,7 +23492,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.loading = false;
                 });
 
-              case 5:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -23528,11 +23547,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['data'],
-  mounted: function mounted() {
-    setTimeout(function () {}, 1000);
-  },
   methods: {
-    edit: function edit() {},
     destroy: function destroy(user) {
       var _this = this;
 
@@ -23675,14 +23690,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "btn btn-outline-success",
     onClick: _cache[0] || (_cache[0] = function ($event) {
-      return $options.addProduct();
+      return $options.showForm();
     })
   }, _hoisted_7)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_user_table, {
     data: $data.products,
-    onDelete: $options.removedUser
+    onEdit: $options.showForm,
+    onDelete: $options.removeProduct
   }, null, 8
   /* PROPS */
-  , ["data", "onDelete"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_form_modal, {
+  , ["data", "onEdit", "onDelete"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_form_modal, {
     ref: "modal",
     onNew: $options.newRow
   }, null, 8
@@ -23943,7 +23959,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       href: "#",
       onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-        return $options.edit(row);
+        return _ctx.$emit('edit', row);
       }, ["prevent"]),
       "class": "btn btn-sm btn-primary mr-2"
     }, _hoisted_6, 8
@@ -24218,14 +24234,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "btn btn-outline-success",
     onClick: _cache[0] || (_cache[0] = function ($event) {
-      return $options.addUser();
+      return $options.showForm();
     })
   }, _hoisted_7)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_user_table, {
     data: $data.users,
+    onEdit: $options.showForm,
     onDelete: $options.removedUser
   }, null, 8
   /* PROPS */
-  , ["data", "onDelete"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_form_modal, {
+  , ["data", "onEdit", "onDelete"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_form_modal, {
     ref: "modal",
     onNew: $options.newRow
   }, null, 8
@@ -24322,6 +24339,7 @@ var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_18 = {
+  key: 0,
   "class": "form-floating mb-3"
 };
 
@@ -24332,6 +24350,7 @@ var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_20 = {
+  key: 1,
   "class": "form-floating mb-3"
 };
 
@@ -24406,7 +24425,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.email]]), _hoisted_17]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.email]]), _hoisted_17]), !$data.form.id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     autocomplete: "false",
     type: "password",
     "class": "form-control",
@@ -24417,7 +24436,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.password]]), _hoisted_19]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.password]]), _hoisted_19])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.form.id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     autocomplete: "false",
     type: "password",
     "class": "form-control",
@@ -24428,7 +24447,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.password_confirm]]), _hoisted_21]), _hoisted_22], 32
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.password_confirm]]), _hoisted_21])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_22], 32
   /* HYDRATE_EVENTS */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
@@ -24505,7 +24524,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       href: "#",
       onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-        return $options.edit(row);
+        return _ctx.$emit('edit', row);
       }, ["prevent"]),
       "class": "btn btn-sm btn-primary mr-2"
     }, _hoisted_6, 8
