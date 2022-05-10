@@ -17,24 +17,20 @@
 
                     <form v-on:submit.prevent="store()">
                         <div class="form-floating mb-3">
-                            <input autocomplete="false" type="number" class="form-control" id="cedula" placeholder="123456789" v-model="form.cedula">
-                            <label for="cedula">Cedula</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input autocomplete="false" type="text" class="form-control" id="name" placeholder="Juanito Perez" v-model="form.name">
+                            <input autocomplete="false" type="text" class="form-control" id="name" placeholder="Producto XYZ" v-model="form.name">
                             <label for="name">Nombre</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input autocomplete="false" type="email" class="form-control" id="email" placeholder="Juanito Perez" v-model="form.email">
-                            <label for="email">Correo electronico</label>
+                            <input autocomplete="false" type="number" class="form-control" id="stock" placeholder="125" v-model="form.stock">
+                            <label for="stock">Existentes</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input autocomplete="false" type="password" class="form-control" id="password" placeholder="Juanito Perez" v-model="form.password">
-                            <label for="password">Contraseña</label>
+                            <input autocomplete="false" type="price" class="form-control" id="price" placeholder="125" v-model="form.price">
+                            <label for="price">Precio</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input autocomplete="false" type="password" class="form-control" id="password_confirm" placeholder="Juanito Perez" v-model="form.password_confirm">
-                            <label for="password_confirm">Confirmar Contraseña</label>
+                            <input autocomplete="false" type="descript" class="form-control" id="descript" placeholder="Producto en venta" v-model="form.descript">
+                            <label for="descript">Descripción</label>
                         </div>
                         <input type="submit" class="d-none" id="submit">
                     </form>
@@ -58,9 +54,9 @@
                 errors: null,
                 form: {
                     name: null,
-                    email: null,
-                    password: null,
-                    password_confirm:null
+                    stock: null,
+                    price: null,
+                    descript: null,
                 }
             }
         },
@@ -70,12 +66,12 @@
                 this.loading = true
 
                 await axios
-                    .post('api/users', this.form)
+                    .post('api/products', this.form)
                     .then(res => {
                         if(res.data.saved){
                             Swal.fire(this.titleModal, 'Se guardo correctamente.', 'success')
                             .then(() => this.closeModal() )
-                            this.$emit('new', res.data.user)
+                            this.$emit('new', res.data.product)
                             return
                         }
                         Swal.fire('Ops..!', 'No se guardo el registro.', 'error')
@@ -113,9 +109,9 @@
                 this.errors = null
                 this.form = {
                     name: null,
-                    email: null,
-                    password: null,
-                    password_confirm:null
+                    stock: null,
+                    price: null,
+                    descript: null,
                 }
             }
         }

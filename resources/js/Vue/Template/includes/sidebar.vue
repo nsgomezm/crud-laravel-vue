@@ -41,19 +41,24 @@
                     {
                         name: 'Home',
                         linkTo: { name: 'home'},
-                        icon: 'fa-solid fa-house'
+                        icon: 'fa-solid fa-house',
+                        // children: [
+                        //     {
+                        //         name: 'Home',
+                        //         linkTo: { name: 'home'},
+                        //         icon: 'fa-solid fa-house'
+                        //     },
+                        // ]
                     },
                     {
                         name: 'Users',
                         linkTo: { name: 'user'},
                         icon: 'fa-solid fa-users',
-                            // children: [
-                            //     {
-                            //         name: 'Home',
-                            //         linkTo: { name: 'home'},
-                            //         icon: 'fa-solid fa-house'
-                            //     },
-                            // ]
+                    },
+                    {
+                        name: 'Prodcutos',
+                        linkTo: { name: 'product'},
+                        icon: 'fa-solid fa-folder',
                     },
                 ]
             }

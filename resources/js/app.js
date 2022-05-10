@@ -1,13 +1,13 @@
-require('./Vue/libs/bootstrap');
+require('./libs/bootstrap');
 import 'admin-lte/dist/js/adminlte.min.js';
 
 import {createApp} from "vue"
 import * as VueRouter from "vue-router";
 
-import routes from "@/router"
-import store from "@/store"
+import routes from "./router"
+import store from "./store"
 
-import AppTemplate from "@/Vue/Template/App"
+import AppTemplate from "./Vue/Template/App"
 import BackendErrors from './Vue/components/BackendErrors'
 
 const router = VueRouter.createRouter({

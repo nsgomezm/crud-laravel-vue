@@ -15,11 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('users')->controller(\App\Http\Controllers\User\UserController::class)->group(function () {
-    Route::post('/', 'store');
     Route::get('/', 'getList');
+    Route::post('/', 'store');
     Route::delete('/{user}', 'destroy');
-    // Route::get('/orders/{id}', 'show');
-    // Route::post('/orders', 'store');
+});
+Route::prefix('products')->controller(\App\Http\Controllers\Product\ProductController::class)->group(function () {
+    Route::get('/', 'getList');
+    Route::post('/', 'store');
+    Route::delete('/{product}', 'destroy');
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
