@@ -13,6 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/test', function () {
+    // $user = new \App\Models\User;
+    // $user->name = 'Juanito';
+    // $user->email = 'juan@gmail.com';
+    // $user->password =  "123456789";
+    // $user->save();
+
+    // return $user;
+});
+
+Route::middleware('guest')->group(function () {
+    Route::view('/login', 'welcome');
+    Route::post('/login', [\App\Http\Controllers\adminController::class, 'login'])->name('login');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/logout', [\App\Http\Controllers\adminController::class, 'logout'])->name('logout');
+    Route::view('/', 'admin')->name('home');
 });

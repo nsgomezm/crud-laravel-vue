@@ -1,0 +1,26 @@
+@mixin cross-center($type-center: 'flexbox'){
+    // $type-center: flexbox | absolute | relative
+    @if $type-center == 'flexbox'{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @if $type-center == 'absolute'{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        bottom: 0;
+        margin: auto;
+    }
+
+    @if $type-center == 'relative'{
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    @content;
+};

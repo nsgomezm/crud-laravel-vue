@@ -1,0 +1,32 @@
+body{
+    width: 100%;
+    min-height: 100vh;
+}
+ul,li{
+    list-style-type: none;
+}
+
+.full-container{
+    width: 100%;
+    max-width: $max-width;
+    margin: 0 auto;
+    &-base{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 100vh;
+    }
+}
+
+.cross-center{
+    @include cross-center();
+}
+
+.dropdown-menu-end{
+    left: initial !important;
+    right: 0 !important;
+}
+
+.dropdown.no-arrow .dropdown-toggle::after{
+    display: none;
+}

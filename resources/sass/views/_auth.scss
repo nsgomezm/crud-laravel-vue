@@ -1,0 +1,11 @@
+.form-login{
+    border: 1px solid $gray-400;
+    border-radius: 20px;
+    padding: 2rem;
+    width: 100vw;
+    max-width:600px;
+    @extend .shadow;
+    @include media-breakpoint-down(lg){
+        padding: 1rem;
+    }
+}
