@@ -23029,6 +23029,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
+var _hoisted_1 = {
+  "class": "content-wrapper p-4"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_base_header = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("base-header");
 
@@ -23036,9 +23039,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_router_view = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-view");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_base_header), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_base_sidebar), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view, {
-    "class": "content-wrapper"
-  })], 64
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_base_header), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_base_sidebar), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -23272,9 +23273,12 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-window.Popper = (__webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"]);
-window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+try {
+  window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+  window.Popper = (__webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"]);
+  window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+} catch (_unused) {}
+
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

@@ -1,7 +1,9 @@
 <template>
     <base-header/>
     <base-sidebar/>
-    <router-view class="content-wrapper"/>
+    <div  class="content-wrapper p-4">
+        <router-view/>
+    </div>
 </template>
 
 <script>
