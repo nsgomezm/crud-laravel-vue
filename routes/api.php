@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::prefix('users')->controller(\App\Http\Controllers\User\UserController::class)->group(function () {
+    Route::post('/', 'store');
+    Route::get('/', 'getList');
+    Route::delete('/{user}', 'destroy');
+    // Route::get('/orders/{id}', 'show');
+    // Route::post('/orders', 'store');
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

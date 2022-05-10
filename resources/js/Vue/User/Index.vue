@@ -7,10 +7,10 @@
             </div>
         </div>
         <div class="card-body">
-            <user-table/>
+            <user-table :data="users" v-on:delete="removedUser"/>
         </div>
 
-        <form-modal ref="modal"/>
+        <form-modal ref="modal" v-on:new="newRow"/>
     </div>
 </template>
 
@@ -22,9 +22,39 @@
             UserTable,
             FormModal
         },
+        data(){
+            return{
+                users: null
+            }
+        },
+        created(){
+            this.getData()
+        },
         methods:{
+            async getData(){
+                await axios
+                    .get('/api/users')
+                    .then(res => {
+                        this.users = res.data
+                    })
+                    .catch(error => {
+                        Swal.fire('Ops..!', 'Ocurrio un error', 'error')
+                    })
+                    .finally(() => {
+                        $(document).ready( function () {
+                            $('#table').DataTable();
+                        });
+                        this.load = true
+                    })
+            },
             addUser(){
                 this.$refs.modal.showModal('Nuevo usuario')
+            },
+            newRow(user){
+                this.users.push(user)
+            },
+            removedUser(user){
+                this.users.splice( this.users.indexOf(user), 1)
             }
         }
     }

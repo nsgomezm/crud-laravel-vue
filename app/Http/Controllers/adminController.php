@@ -23,6 +23,6 @@ class adminController extends Controller
 
     public function logout(){
         \Auth::logout();
-        \redirect::route('home');
+        redirect()->route('home');
     }
 }

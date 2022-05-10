@@ -14,12 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/test', function () {
-    // $user = new \App\Models\User;
-    // $user->name = 'Juanito';
-    // $user->email = 'juan@gmail.com';
-    // $user->password =  "123456789";
-    // $user->save();
+    $user = new \App\Models\User;
+    $user->cedula = '123456';
+    $user->name = 'Juanito';
+    $user->email = 'juan@gmail.com';
+    $user->password =  "123456789";
+    $user->save();
 
+    Auth::login($user);
+    Route::redirect()->route('home');
     // return $user;
 });
 

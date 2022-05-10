@@ -1,5 +1,8 @@
 window._ = require('lodash');
-import bootstrap from 'bootstrap'
+import "bootstrap";
+
+require('./jquery.dataTables.min.js')
+require('./dataTables.bootstrap5.min.js')
 
 
 /**
@@ -12,9 +15,14 @@ try{
     window.axios = require('axios');
     window.Popper = require('popper.js').default
     window.$ = window.jQuery = require('jquery')
+    window.dt = require( 'datatables.net' )();
 }catch{
 
 }
+
+
+
+window.Swal = require('sweetalert2')
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
