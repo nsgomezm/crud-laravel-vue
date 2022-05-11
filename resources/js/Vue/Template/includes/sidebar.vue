@@ -60,6 +60,11 @@
                         linkTo: { name: 'product'},
                         icon: 'fa-solid fa-folder',
                     },
+                    {
+                        name: 'Facturas',
+                        linkTo: { name: 'bills'},
+                        icon: 'fa-solid fa-copy',
+                    },
                 ]
             }
         }

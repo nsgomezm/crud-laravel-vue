@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Shopping;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
@@ -20,4 +21,9 @@ class Product extends Model
         'price',
         'descript',
     ];
+
+    public function shoppings()
+    {
+        return $this->hasMany(Shopping::class, 'id_producto');
+    }
 }

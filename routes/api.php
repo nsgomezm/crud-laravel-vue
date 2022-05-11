@@ -26,6 +26,13 @@ Route::prefix('products')->controller(\App\Http\Controllers\Product\ProductContr
     Route::post('/{product}', 'update');
     Route::delete('/{product}', 'destroy');
 });
+Route::prefix('bills')->controller(\App\Http\Controllers\Bill\BillController::class)->group(function () {
+    Route::get('/', 'getList');
+    Route::get('/{bill}', 'show');
+    Route::post('/', 'store');
+    Route::post('/{product}', 'update');
+    Route::delete('/{product}', 'destroy');
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
