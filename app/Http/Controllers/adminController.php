@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Route;
 
 use Illuminate\Http\Request;
 
@@ -23,6 +24,6 @@ class adminController extends Controller
 
     public function logout(){
         \Auth::logout();
-        redirect()->route('home');
+        Route::redirect()->route('home');
     }
 }

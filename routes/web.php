@@ -15,15 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/test', function () {
 
-    return \App\Models\User::has('bills')->with('bills')->get();
-
-    return \App\Models\USer::with('bills')->get();
-    return \App\Models\Bill::with('user')->get();
-    // return \App\Models\Shopping::with('product')->get();
-    return \App\Models\Product::with('shoppings.bills')->get();
-
-
-
     $user = new \App\Models\User;
     $user->cedula = '123456';
     $user->name = 'Juanito';
@@ -33,7 +24,6 @@ Route::get('/test', function () {
 
     Auth::login($user);
     Route::redirect()->route('home');
-    // return $user;
 });
 
 Route::middleware('guest')->group(function () {

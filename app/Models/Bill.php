@@ -13,7 +13,7 @@ class Bill extends Model
 
     public function shoppings()
     {
-        return $this->hasMany(Shopping::class, 'id');
+        return $this->hasMany(Shopping::class, 'id_bills');
     }
 
     public function user()

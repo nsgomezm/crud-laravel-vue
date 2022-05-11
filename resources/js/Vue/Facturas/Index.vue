@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="card-body">
-            <user-table :data="facturas" v-on:edit="showForm" v-on:delete="removeProduct"/>
+            <bill-table :data="facturas" v-on:edit="showForm" v-on:delete="removeProduct"/>
         </div>
 
         <form-modal ref="modal" v-on:new="newRow"/>
@@ -15,11 +15,11 @@
 </template>
 
 <script>
-    import UserTable from './components/UserTable'
+    import BillTable from './components/BillTable'
     import FormModal from './components/FormModal'
     export default {
         components:{
-            UserTable,
+            BillTable,
             FormModal
         },
         data(){
@@ -48,7 +48,7 @@
                     })
             },
             showForm(factura = null){
-                this.$refs.modal.showModal(`${factura ? 'Actualizar' : 'Nuevo '} producto`, factura)
+                this.$refs.modal.showModal(`${factura ? 'Actualizar' : 'Nuevo '} Factura`, factura)
             },
             newRow(product){
                 let existsProduct = this.products.indexOf(product)

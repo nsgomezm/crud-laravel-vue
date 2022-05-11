@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="card-body">
-            <user-table :data="users" v-on:edit="showForm" v-on:delete="removedUser"/>
+            <data-table :data="users" v-on:edit="showForm" v-on:delete="removedUser"/>
         </div>
 
         <form-modal ref="modal" v-on:new="newRow"/>
@@ -15,11 +15,11 @@
 </template>
 
 <script>
-    import UserTable from './components/UserTable'
+    import DataTable from './components/DataTable'
     import FormModal from './components/FormModal'
     export default {
         components:{
-            UserTable,
+            DataTable,
             FormModal
         },
         data(){

@@ -28,7 +28,6 @@
     export default {
         props:['data'],
         methods:{
-
             destroy(user){
                 Swal.fire({
                     text: `Seguro que deseas eliminar el registro de (${user.name})?`,

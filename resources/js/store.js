@@ -3,7 +3,8 @@ import { createStore } from 'vuex'
 const store = createStore({
     state:{
         appName: 'Prueba',
-        nameActivePage: ''
+        nameActivePage: '',
+        iva: 0.19
     },
     getters:{
         nameCurrentPage (state) {

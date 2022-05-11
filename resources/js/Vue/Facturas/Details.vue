@@ -1,8 +1,7 @@
 <template>
     <div>
-        <!-- <h1>{{ $route.params.id}}</h1> -->
         <backend-errors :errors="errors"/>
-        <form v-on:submit.prevent="store()" v-if="load">
+        <div v-if="load">
             <div class="form-row">
                 <div class="col-12 col-lg-8 mb-3">
                     <div class="input-group mb-3">
@@ -12,51 +11,26 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-4 mb-3 text-center text-lg-end">
-                    <a href="#" class="btn btn-outline-success">Add product  <i class="fa-solid fa-plus"></i></a>
+                    <a href="#" class="btn btn-outline-success" v-on:click.prevent="showForm()">Add product  <i class="fa-solid fa-plus"></i></a>
                 </div>
             </div>
-                <table class="table" id="table">
-                    <thead>
-                        <tr>
-                            <th>Producto</th>
-                            <th>Cantidad</th>
-                            <th>Valor C/U</th>
-                            <th>Valor sin IVA</th>
-                            <th>IVA</th>
-                            <th>Total</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(item, index) in bill.shoppings" :key="index">
-                            <td>{{ item.product.name  }}</td>
-                            <td>{{ item.amount  }}</td>
-                            <td>{{ item.product.price  }}</td>
-                            <td>{{ item.sum  }}</td>
-                            <td>{{ item.sum_iva  }}</td>
-                            <td>{{ item.sum_all  }}</td>
-                            <td>
-                                <a href="#" v-on:click.prevent="$emit('edit', row)" class="btn btn-sm btn-primary mr-2"><i class="fa-solid fa-user-pen"></i></a>
-                                <a href="#" v-on:click.prevent="destroy(row)" class="btn btn-sm btn-danger"><i class="fa-solid fa-user-minus"></i></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tr>
-                        <th colspan="3">Totales</th>
-                        <th>{{ bill.sum}}</th>
-                        <th>{{ bill.sum_iva }}</th>
-                        <th>{{ bill.sum_all }}</th>
-                    </tr>
-                </table>
+
+            <detail-table :shoppings="bill.shoppings" v-on:edit="showForm" v-on:delete="removedRow" />
 
             <input type="submit" class="d-none" id="submit">
-        </form>
-
+        </div>
+        <detail-modal ref="modal" v-on:new="newRow" />
     </div>
 </template>
 
 <script>
+    import DetailTable from './components/DetailTable'
+    import DetailModal from './components/DetailModal'
     export default {
+        components:{
+            DetailTable,
+            DetailModal
+        },
         data(){
             return {
                 load: false,
@@ -81,6 +55,23 @@
                         });
                         this.load = true
                     })
+            },
+            showForm(product = null){
+                this.$refs.modal.showModal(`${product ? 'Actualizar' : 'Nuevo '} compra`, product)
+            },
+            newRow(shopping ){
+                let existsShopping = this.bill.shoppings.indexOf(shopping)
+                if(existsShopping >= 0){
+                    this.bill.shoppings[existsShopping] = shopping
+                    console.log(this.bill.shoppings[existsShopping])
+                    return
+                }
+
+                console.log(this.bill.shoppings, shopping)
+                this.bill.shoppings.push(shopping)
+            },
+            removedRow(shopping){
+                this.bill.shoppings.splice( this.bill.shoppings.indexOf(shopping), 1)
             }
         }
     }

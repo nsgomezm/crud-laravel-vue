@@ -2,6 +2,7 @@ require('./libs/bootstrap');
 import 'admin-lte/dist/js/adminlte.min.js';
 
 import {createApp} from "vue"
+import vSelect from 'vue-select'
 import * as VueRouter from "vue-router";
 
 import routes from "./router"
@@ -20,6 +21,7 @@ const  app = createApp(AppTemplate)
 app.use(router)
 app.use(store)
 app.component('BackendErrors', BackendErrors)
+app.component('v-select', vSelect)
 
 app.mount('#app');
 

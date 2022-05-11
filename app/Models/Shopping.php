@@ -10,6 +10,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Shopping extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'id_bills',
+        'id_producto',
+        'sum',
+        'sum_iva',
+        'sum_all',
+        'comments',
+        'amount',
+    ];
 
     public function bills()
     {

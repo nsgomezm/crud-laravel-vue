@@ -6,7 +6,7 @@
                     <th>ID factura</th>
                     <th>Cedula</th>
                     <th>Nombre</th>
-                    <th>No. Compras</th>
+                    <th>No. Productos   </th>
                     <th>Acciones</th>
                 </tr>
             </thead>

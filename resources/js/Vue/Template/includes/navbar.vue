@@ -8,30 +8,8 @@
             <a class="nav-link" disabled> {{ $store.state.nameActivePage }}  </a> <!-- {{ $store.getters.nameCurrentPage }} -->
         </li>
     </ul>
-        <!--
-            buscador de factura/usuario
-
-        <form class="form-inline ml-3">
-            <div class="input-group input-group-sm">
-                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-navbar" type="submit">
-                    <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-        </form> -->
-
     <ul class="navbar-nav ml-auto">
-        <div class="dropdown no-arrow">
-            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa-solid fa-circle-user fa-xl"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Editar perfil</a></li>
-                <li><a class="dropdown-item" href="/logout">Cerrar Sesión</a></li>
-            </ul>
-        </div>
+        <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
     </ul>
 </nav>
 <!-- /.navbar -->

@@ -1,5 +1,6 @@
 window._ = require('lodash');
 import "bootstrap";
+import 'vue-select/dist/vue-select.css';
 
 require('./jquery.dataTables.min.js')
 require('./dataTables.bootstrap5.min.js')
