@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Bill;
 use App\Models\Bill;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\BillRequest;
 use App\Http\Controllers\Controller;
 
 class BaseBillController extends Controller
@@ -27,9 +28,14 @@ class BaseBillController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BillRequest $request)
     {
-        //
+        $bill = new Bill($request->all());
+
+        return response()->json([
+            'saved' => $bill->save(),
+            'bill' => $bill->load('user', 'shoppings')
+        ]);
     }
 
     /**
@@ -63,8 +69,10 @@ class BaseBillController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Bill $bill)
     {
-        //
+        return response()->json([
+            'deleted' => $bill->delete()
+        ]);
     }
 }

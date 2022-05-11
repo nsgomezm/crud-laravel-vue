@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('users')->controller(\App\Http\Controllers\User\UserController::class)->group(function () {
     Route::get('/', 'getList');
+    Route::get('/validCedula/{cedula}', 'getUserByCedula');
     Route::post('/', 'store');
     Route::post('/{user}', 'update');
     Route::delete('/{user}', 'destroy');
@@ -29,9 +30,11 @@ Route::prefix('products')->controller(\App\Http\Controllers\Product\ProductContr
 Route::prefix('bills')->controller(\App\Http\Controllers\Bill\BillController::class)->group(function () {
     Route::get('/', 'getList');
     Route::get('/{bill}', 'show');
+
     Route::post('/', 'store');
-    Route::post('/{product}', 'update');
-    Route::delete('/{product}', 'destroy');
+    // Route::post('/{product}', 'update');
+    Route::delete('/{bill}', 'destroy');
+
 });
 Route::prefix('shoppings')->controller(\App\Http\Controllers\Shopping\ShoppingController::class)->group(function () {
     Route::get('/', 'getList');

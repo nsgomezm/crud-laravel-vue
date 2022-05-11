@@ -11,6 +11,11 @@ class Bill extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'id_user',
+        'comments'
+    ];
+
     public function shoppings()
     {
         return $this->hasMany(Shopping::class, 'id_bills');

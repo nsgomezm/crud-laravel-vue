@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="card-body">
-            <bill-table :data="facturas" v-on:edit="showForm" v-on:delete="removeProduct"/>
+            <bill-table :data="facturas" v-on:edit="showForm" v-on:delete="removeFactura"/>
         </div>
 
         <form-modal ref="modal" v-on:new="newRow"/>
@@ -48,18 +48,20 @@
                     })
             },
             showForm(factura = null){
-                this.$refs.modal.showModal(`${factura ? 'Actualizar' : 'Nuevo '} Factura`, factura)
+                this.$refs.modal.showModal(`${factura ? 'Actualizar' : 'Nueva '} Factura`, factura)
             },
-            newRow(product){
-                let existsProduct = this.products.indexOf(product)
-                if(existsProduct){
-                    this.products[existsProduct] = product
+            newRow(factura){
+                let existsFactura = this.facturas.indexOf(factura)
+                if(existsFactura >= 0){
+                    this.facturas[existsFactura] = factura
                     return
                 }
-                this.products.push(product)
+                // console.log(factura)
+                // console.log(this.facturas)
+                this.facturas.push(factura)
             },
-            removeProduct(product){
-                this.products.splice( this.products.indexOf(product), 1)
+            removeFactura(factura){
+                this.facturas.splice( this.facturas.indexOf(factura), 1)
             }
         }
     }
