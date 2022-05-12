@@ -52,7 +52,7 @@
             },
             newRow(product){
                 let existsProduct = this.products.indexOf(product)
-                if(existsProduct){
+                if(existsProduct >= 0){
                     this.products[existsProduct] = product
                     return
                 }

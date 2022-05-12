@@ -23114,9 +23114,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       if (existsFactura >= 0) {
         this.facturas[existsFactura] = factura;
         return;
-      } // console.log(factura)
-      // console.log(this.facturas)
-
+      }
 
       this.facturas.push(factura);
     },
@@ -23702,7 +23700,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     newRow: function newRow(product) {
       var existsProduct = this.products.indexOf(product);
 
-      if (existsProduct) {
+      if (existsProduct >= 0) {
         this.products[existsProduct] = product;
         return;
       }
@@ -23743,13 +23741,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       Swal.fire({
-        text: "Seguro que deseas eliminar el registro de (".concat(product.name, ")?"),
-        icon: 'question',
-        showDenyButton: true,
-        confirmButtonText: 'Cancelar',
-        denyButtonText: "Eliminar"
+        title: 'Estas seguro?',
+        text: "No se podra revertir esta acción!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        CancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, eliminar'
       }).then(function (result) {
-        if (!result.isConfirmed) {
+        if (result.isConfirmed) {
           _this["delete"](product);
         }
       });
@@ -24082,7 +24083,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     newRow: function newRow(user) {
       var existsUser = this.users.indexOf(user);
 
-      if (existsUser) {
+      if (existsUser >= 0) {
         this.users[existsUser] = user;
         return;
       }
@@ -25408,7 +25409,7 @@ var _hoisted_22 = ["disabled"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_backend_errors = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("backend-errors");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Modal "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.titleModal), 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.titleModal), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
@@ -25483,9 +25484,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     disabled: $data.loading
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.loading ? 'Guardando...' : 'Guardar'), 11
   /* TEXT, CLASS, PROPS */
-  , _hoisted_22)])])])])], 2112
-  /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
-  );
+  , _hoisted_22)])])])]);
 }
 
 /***/ }),

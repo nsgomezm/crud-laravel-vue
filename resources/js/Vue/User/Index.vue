@@ -52,7 +52,7 @@
             },
             newRow(user){
                 let existsUser = this.users.indexOf(user)
-                if(existsUser){
+                if(existsUser >= 0){
                     this.users[existsUser] = user
                     return
                 }

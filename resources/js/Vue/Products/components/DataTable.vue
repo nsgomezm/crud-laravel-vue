@@ -32,14 +32,16 @@
         methods:{
             destroy(product){
                 Swal.fire({
-                    text: `Seguro que deseas eliminar el registro de (${product.name})?`,
-                    icon:'question',
-                    showDenyButton: true,
-                    confirmButtonText: 'Cancelar',
-                    denyButtonText: `Eliminar`,
-
+                    title: 'Estas seguro?',
+                    text: "No se podra revertir esta acción!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    CancelButtonText: 'Cancelar',
+                    confirmButtonText: 'Si, eliminar'
                 }).then((result) => {
-                    if (!result.isConfirmed) {
+                    if (result.isConfirmed) {
                         this.delete(product)
                     }
                 })

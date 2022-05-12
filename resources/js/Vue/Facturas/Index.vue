@@ -56,8 +56,6 @@
                     this.facturas[existsFactura] = factura
                     return
                 }
-                // console.log(factura)
-                // console.log(this.facturas)
                 this.facturas.push(factura)
             },
             removeFactura(factura){
