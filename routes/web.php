@@ -15,15 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/test', function () {
 
-    $user = new \App\Models\User;
-    $user->cedula = '123456';
-    $user->name = 'Juanito';
-    $user->email = 'juan@gmail.com';
-    $user->password =  "123456789";
-    $user->save();
-
-    Auth::login($user);
-    Route::redirect()->route('home');
+    // $user = new \App\Models\User;
+    // $user->cedula = '123456';
+    // $user->name = 'Juanito';
+    // $user->email = 'juan@gmail.com';
+    // $user->password =  "123456789";
+    // $user->save();
+    // $user = \App\Models\User::find(1);
+    // Auth::login($user);
+    // Route::redirect()->route('home');
 });
 
 Route::middleware('guest')->group(function () {

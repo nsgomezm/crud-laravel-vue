@@ -7,7 +7,10 @@
             </div>
         </div>
         <div class="card-body">
-            <data-table :data="users" v-on:edit="showForm" v-on:delete="removedUser"/>
+            <div v-if="!users">
+                sin data
+            </div>
+            <data-table :data="users" v-on:edit="showForm" v-if="users"/>
         </div>
 
         <form-modal ref="modal" v-on:new="newRow"/>
@@ -22,31 +25,11 @@
             DataTable,
             FormModal
         },
-        data(){
-            return{
-                users: null
-            }
-        },
-        created(){
-            this.getData()
+
+        computed:{
+            users(){ return this.$store.getters['user/getListUsers'] }
         },
         methods:{
-            async getData(){
-                await axios
-                    .get('/api/users')
-                    .then(res => {
-                        this.users = res.data
-                    })
-                    .catch(error => {
-                        Swal.fire('Ops..!', 'Ocurrio un error', 'error')
-                    })
-                    .finally(() => {
-                        $(document).ready( function () {
-                            $('#table').DataTable();
-                        });
-                        this.load = true
-                    })
-            },
             showForm(user = null){
                 this.$refs.modal.showModal(`${user ? 'Actualizar' : 'Nuevo'} usuario`, user)
             },
@@ -58,9 +41,6 @@
                 }
                 this.users.push(user)
             },
-            removedUser(user){
-                this.users.splice( this.users.indexOf(user), 1)
-            }
         }
     }
 </script>

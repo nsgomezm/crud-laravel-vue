@@ -15,9 +15,6 @@ return new class extends Migration
     {
         Schema::create('bills', function (Blueprint $table) {
             $table->id();
-            $table->integer('sum');
-            $table->integer('sum_iva');
-            $table->integer('sum_all');
             $table->string('comments');
             $table->foreignId('id_user')->constrained('users');
             $table->timestamps();

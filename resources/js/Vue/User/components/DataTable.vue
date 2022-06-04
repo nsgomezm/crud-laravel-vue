@@ -27,6 +27,13 @@
 <script>
     export default {
         props:['data'],
+
+        mounted(){
+            $(document).ready( function () {
+                $('#table').DataTable();
+            });
+        },
+
         methods:{
             destroy(user){
                 Swal.fire({
@@ -38,28 +45,10 @@
 
                 }).then((result) => {
                     if (!result.isConfirmed) {
-                        this.delete(user)
+                        this.$store.dispatch('user/delete', user)
                     }
                 })
             },
-
-            async delete(user){
-                await axios
-                    .delete(`/api/users/${user.id}`)
-                    .then(res => {
-                        if(res.data.deleted){
-                            Swal.fire('', 'Se elimino correctamente', 'success')
-                            this.$emit('delete', user)
-
-                            return
-                        }
-                        Swal.fire('Ops...!', 'No se pudo eliminar', 'error')
-                    })
-                    .catch(error => {
-                        Swal.fire('Ops...!', 'Ocurrio un error', 'error')
-                        console.log(error)
-                    })
-            }
         }
     }
 </script>

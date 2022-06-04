@@ -25,6 +25,7 @@
 
         created(){
             document.title = this.nameCurrentPage
+            this.$store.dispatch('user/getUsers')
         }
     }
 </script>

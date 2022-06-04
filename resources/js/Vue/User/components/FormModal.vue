@@ -15,7 +15,7 @@
                     </div>
                     <backend-errors :errors="errors"/>
 
-                    <form v-on:submit.prevent="store()">
+                    <form v-on:submit.prevent="store()" v-if="form">
                         <div class="form-floating mb-3">
                             <input autocomplete="false" type="number" class="form-control" id="cedula" placeholder="123456789" v-model="form.cedula">
                             <label for="cedula">Cedula</label>
@@ -45,8 +45,11 @@
                 </div>
             </div>
         </div>
+
     </div>
+
 </template>
+
 
 <script>
     export default {
@@ -56,12 +59,7 @@
                 load: false,
                 loading: false,
                 errors: null,
-                form: {
-                    name: null,
-                    email: null,
-                    password: null,
-                    password_confirm:null
-                }
+                form: null
             }
         },
         methods:{
@@ -100,7 +98,7 @@
                 this.titleModal = title
 
                 if(!form) this.resetData()
-                if(form) this.form = form
+                if(form) this.form = {...form} /* Se usar {...var} para evitar que la variable sea reactiva */
                 $('#FormModal').modal('show')
 
                 this.load = true

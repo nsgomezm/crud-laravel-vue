@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-
+import StoreUser from './store/users'
 const store = createStore({
     state:{
         appName: 'Prueba',
@@ -20,6 +20,10 @@ const store = createStore({
         setNameActivePage ({ commit }, currentName) {
             commit('changeNameActivePage', currentName)
         },
+    },
+
+    modules:{
+        user: StoreUser
     }
 
 })
